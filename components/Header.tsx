@@ -11,7 +11,6 @@ import { useUser } from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
 
 import Button from "./Button";
-import { StarBackground } from "./starBackground";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -49,8 +48,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         className
       )}
     >
-      <StarBackground />
-      <div className="w-full mb-4 flex items-center justify-end">
+      <div className="w-full mb-4 flex items-center justify-end z-100">
         <div className="flex justify-between items-center gap-x-4">
           {user ? (
             <div className="flex gap-x-4 items-center">
