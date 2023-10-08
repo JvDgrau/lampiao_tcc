@@ -2,7 +2,7 @@
 
 import { MdMenuBook } from "react-icons/md";
 
-import { Song } from "@/types";
+import { Books } from "@/types";
 import useUploadModal from "@/hooks/useUploadModal";
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
@@ -12,16 +12,16 @@ import useOnPlay from "@/hooks/useOnPlay";
 import MediaItem from "./MediaItem";
 
 interface LibraryProps {
-  songs: Song[];
+  books: Books[];
 }
 
-const Library: React.FC<LibraryProps> = ({ songs }) => {
+const Library: React.FC<LibraryProps> = ({ books }) => {
   const { user, subscription } = useUser();
   const uploadModal = useUploadModal();
   const authModal = useAuthModal();
   const subscribeModal = useSubscribeModal();
 
-  const onPlay = useOnPlay(songs);
+  const onPlay = useOnPlay(books);
 
   const onClick = () => {
     if (!user) {
@@ -49,7 +49,7 @@ const Library: React.FC<LibraryProps> = ({ songs }) => {
         </div>
       </div>
       <div className="flex flex-col gap-y-2 mt-4 px-3">
-        {songs.map((item) => (
+        {books.map((item) => (
           <MediaItem
             onClick={(id: string) => onPlay(id)}
             key={item.id}

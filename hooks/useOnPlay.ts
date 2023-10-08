@@ -1,4 +1,4 @@
-import { Song } from "@/types";
+import { Books } from "@/types";
 
 import usePlayer from "./usePlayer";
 import useSubscribeModal from "./useSubscribeModal";
@@ -22,7 +22,7 @@ const useOnPlay = (songs: Song[]) => {
 
     player.setId(id);
     player.setIds(songs.map((song) => song.id));
-  }
+  };
 
   return onPlay;
 };

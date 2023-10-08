@@ -1,12 +1,9 @@
-import Stripe from 'stripe';
+import Stripe from "stripe";
 
-export interface Song {
+export interface Books {
   id: string;
-  user_id: string;
-  author: string;
   title: string;
-  song_path: string;
-  image_path: string;
+  thumbnail?: string;
 }
 
 export interface Product {

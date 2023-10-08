@@ -1,17 +1,18 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-import { Song } from "@/types";
+import { Books } from "@/types";
 
-const getSongs = async (): Promise<Song[]> => {
+const getBookById = async (id: string): Promise<Books> => {
   const supabase = createServerComponentClient({
-    cookies: cookies
+    cookies: cookies,
   });
 
   const { data, error } = await supabase
-    .from('songs')
-    .select('*')
-    .order('created_at', { ascending: false })
+    .from("songs")
+    .select("*")
+    .eq("id", id)
+    .single();
 
   if (error) {
     console.log(error.message);
@@ -20,4 +21,4 @@ const getSongs = async (): Promise<Song[]> => {
   return (data as any) || [];
 };
 
-export default getSongs;
+export default getBookById;

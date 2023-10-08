@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import getLikedSongs from "@/actions/getLikedSongs";
+import getLikedBooks from "@/actions/getLikedBooks";
 import Header from "@/components/Header";
 
 import LikedContent from "./components/LikedContent";
@@ -8,7 +8,7 @@ import LikedContent from "./components/LikedContent";
 export const revalidate = 0;
 
 const Liked = async () => {
-  const songs = await getLikedSongs();
+  const songs = await getLikedBooks();
 
   return (
     <div
@@ -57,7 +57,6 @@ const Liked = async () => {
           </div>
         </div>
       </Header>
-      ;
     </div>
   );
 };

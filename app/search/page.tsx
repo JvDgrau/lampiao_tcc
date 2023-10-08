@@ -1,4 +1,4 @@
-import getSongsByTitle from "@/actions/getSongsByTitle";
+import getBooksByTitle from "@/actions/getBooksByTitle";
 import SearchInput from "@/components/SearchInput";
 import Header from "@/components/Header";
 
@@ -11,7 +11,7 @@ interface SearchProps {
 }
 
 const Search = async ({ searchParams }: SearchProps) => {
-  const songs = await getSongsByTitle(searchParams.title);
+  const songs = await getBooksByTitle(searchParams.title);
 
   return (
     <div
