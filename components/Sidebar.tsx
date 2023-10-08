@@ -79,9 +79,9 @@ const Sidebar = ({ children, songs }: SidebarProps) => {
             ))}
           </div>
         </Box>
-        <Box className="h-full">
+        <Box className="h-full flex flex-col justify-between">
           <Library songs={songs} />
-          <div className="flex justify-center items-center h-screen mt-20">
+          <div className="flex justify-center items-center mb-4">
             <Image
               width={200}
               height={50}
