@@ -3,11 +3,12 @@ import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 
 import PageContent from "./components/PageContent";
+import getBooksById from "@/actions/getBooksById";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const books = await getBooks();
+  const books = await getBooksById();
 
   return (
     <div

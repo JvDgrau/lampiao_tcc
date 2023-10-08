@@ -11,7 +11,7 @@ interface SearchProps {
 }
 
 const Search = async ({ searchParams }: SearchProps) => {
-  const songs = await getBooksByTitle(searchParams.title);
+  const books = await getBooksByTitle(searchParams.title);
 
   return (
     <div
@@ -30,7 +30,7 @@ const Search = async ({ searchParams }: SearchProps) => {
           <SearchInput />
         </div>
       </Header>
-      <SearchContent songs={songs} />
+      <SearchContent books={books} />
     </div>
   );
 };

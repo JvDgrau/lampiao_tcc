@@ -6,7 +6,7 @@ import { Books } from "@/types";
 
 const useSongById = (id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [song, setSong] = useState<Song | undefined>(undefined);
+  const [song, setSong] = useState<Books | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const useSongById = (id?: string) => {
         return toast.error(error.message);
       }
 
-      setSong(data as Song);
+      setSong(data as Books);
       setIsLoading(false);
     };
 

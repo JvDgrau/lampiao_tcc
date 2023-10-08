@@ -8,7 +8,7 @@ import { Books } from "@/types";
 import PlayButton from "./PlayButton";
 
 interface SongItemProps {
-  data: Song;
+  data: Books;
   onClick: (id: string) => void;
 }
 
@@ -63,7 +63,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
             truncate
           "
         >
-          By {data.author}
+          By {data.title}
         </p>
       </div>
       <div

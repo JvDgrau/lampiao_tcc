@@ -14,7 +14,7 @@ import MediaItem from "./MediaItem";
 import Slider from "./Slider";
 
 interface PlayerContentProps {
-  song: Song;
+  song: Books;
   songUrl: string;
 }
 

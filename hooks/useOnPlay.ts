@@ -5,7 +5,7 @@ import useSubscribeModal from "./useSubscribeModal";
 import useAuthModal from "./useAuthModal";
 import { useUser } from "./useUser";
 
-const useOnPlay = (songs: Song[]) => {
+const useOnPlay = (songs: Books[]) => {
   const player = usePlayer();
   const subscribeModal = useSubscribeModal();
   const authModal = useAuthModal();

@@ -2,16 +2,16 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 import { Books } from "@/types";
 
-const useLoadSongUrl = (song: Song) => {
+const useLoadSongUrl = (books: Books) => {
   const supabaseClient = useSupabaseClient();
 
-  if (!song) {
+  if (!books) {
     return "";
   }
 
   const { data: songData } = supabaseClient.storage
     .from("songs")
-    .getPublicUrl(song.song_path);
+    .getPublicUrl(books.id);
 
   return songData.publicUrl;
 };

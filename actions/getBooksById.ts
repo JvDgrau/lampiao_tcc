@@ -1,24 +1,21 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-
 import { Books } from "@/types";
 
-const getBookById = async (id: string): Promise<Books> => {
-  const supabase = createServerComponentClient({
-    cookies: cookies,
-  });
+const API_KEY = "AIzaSyD6NhqtMlsOiDtUXQxBwSvUwXk4TZnXqgE";
+const query = "genre:science fiction";
 
-  const { data, error } = await supabase
-    .from("songs")
-    .select("*")
-    .eq("id", id)
-    .single();
+const getBooksById = async (): Promise<Books[]> => {
+  const response = await fetch(
+    `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${API_KEY}`
+  );
+  const data = await response.json();
 
-  if (error) {
-    console.log(error.message);
-  }
+  const books: Books[] = data.items.map((book: any) => ({
+    id: book.id,
+    title: book.volumeInfo.title,
+    thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+  }));
 
-  return (data as any) || [];
+  return books;
 };
 
-export default getBookById;
+export default getBooksById;

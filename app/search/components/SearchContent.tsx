@@ -6,13 +6,13 @@ import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 
 interface SearchContentProps {
-  songs: Song[];
+  books: Books[];
 }
 
-const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
-  const onPlay = useOnPlay(songs);
+const SearchContent: React.FC<SearchContentProps> = ({ books }) => {
+  const onPlay = useOnPlay(books);
 
-  if (songs.length === 0) {
+  if (books.length === 0) {
     return (
       <div
         className="
@@ -31,12 +31,12 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
 
   return (
     <div className="flex flex-col gap-y-2 w-full px-6">
-      {songs.map((song: Song) => (
-        <div key={song.id} className="flex items-center gap-x-4 w-full">
+      {books.map((books: Books) => (
+        <div key={books.id} className="flex items-center gap-x-4 w-full">
           <div className="flex-1">
-            <MediaItem onClick={(id: string) => onPlay(id)} data={song} />
+            <MediaItem onClick={(id: string) => onPlay(id)} data={books} />
           </div>
-          <LikeButton songId={song.id} />
+          <LikeButton songId={books.id} />
         </div>
       ))}
     </div>
