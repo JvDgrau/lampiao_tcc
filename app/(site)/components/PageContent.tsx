@@ -5,13 +5,13 @@ import useOnPlay from "@/hooks/useOnPlay";
 import SongItem from "@/components/SongItem";
 
 interface PageContentProps {
-  songs: Song[];
+  books: Books[];
 }
 
-const PageContent: React.FC<PageContentProps> = ({ songs }) => {
-  const onPlay = useOnPlay(songs);
+const PageContent: React.FC<PageContentProps> = ({ books }) => {
+  const onPlay = useOnPlay(books);
 
-  if (songs.length === 0) {
+  if (books.length === 0) {
     return (
       <div className="mt-4 text-neutral-400">
         Cadastre-se e escolha seus livros preferidos.
@@ -33,7 +33,7 @@ const PageContent: React.FC<PageContentProps> = ({ songs }) => {
         mt-4
       "
     >
-      {songs.map((item) => (
+      {books.map((item) => (
         <SongItem
           onClick={(id: string) => onPlay(id)}
           key={item.id}

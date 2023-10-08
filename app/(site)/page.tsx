@@ -7,7 +7,7 @@ import PageContent from "./components/PageContent";
 export const revalidate = 0;
 
 export default async function Home() {
-  const songs = await getBooks();
+  const books = await getBooks();
 
   return (
     <div
@@ -53,7 +53,7 @@ export default async function Home() {
         <div className="flex justify-between items-center">
           <h1 className="text-white text-2xl font-semibold">Minha estante</h1>
         </div>
-        <PageContent songs={songs} />
+        <PageContent books={books} />
       </div>
     </div>
   );
