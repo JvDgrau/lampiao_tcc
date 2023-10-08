@@ -27,32 +27,42 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   };
 
   return (
-    <button
-      onClick={onClick}
-      className=" 
-        ml-5
+    <div
+      className="
+    flex 
+    items-center 
+    justify-center 
+"
+    >
+      <button
+        onClick={onClick}
+        className="
+        m-5
         relative 
         group 
         flex 
         flex-col 
         items-center 
-        justify-center
+        justify-between
+        p-1
         rounded-md 
         overflow-hidden 
-        gap-y-2 
-        bg-neutral-100/10 
+        bg-gradient-to-b from-indigo-700
         cursor-pointer 
-        hover:bg-neutral-100/20 
-        transition 
+        transition-transform transform 
+        hover:scale-105 
         w-[100px] 
         h-[100px]
-        border border-white
+        border-2 border-white
     "
-    >
-      <p className="font-medium truncate">{name}</p>
-      <div className="h-[1px] w-full bg-white"></div>
-      <span className="font-bold">{10}</span>
-    </button>
+      >
+        <p className="font-medium text-white mb-1 truncate">{name}</p>
+        <div className="bg-white h-[1px] w-3/4 self-stretch mx-3"></div>{" "}
+        <span className="font-bold text-indigo-700 bg-white p-1 mt-1 rounded-md">
+          {10}
+        </span>
+      </button>
+    </div>
   );
 };
 
