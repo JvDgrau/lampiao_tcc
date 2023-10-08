@@ -30,7 +30,7 @@ export default async function RootLayout({
   const userSongs = await getSongsByUserId();
 
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={font.className}>
         <ToasterProvider />
         <SupabaseProvider>

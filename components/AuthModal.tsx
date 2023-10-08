@@ -36,14 +36,14 @@ const AuthModal = () => {
 
   return (
     <Modal
-      title="Welcome back"
-      description="Login to your account."
+      title="Bem vindo ao Lampião"
+      description="Apoiando escritores e leitores desde 2023."
       isOpen={isOpen}
       onChange={onChange}
     >
       <Auth
         supabaseClient={supabaseClient}
-        providers={["github"]}
+        providers={["google"]}
         magicLink={true}
         appearance={{
           theme: ThemeSupa,
