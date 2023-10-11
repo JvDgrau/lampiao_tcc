@@ -29,7 +29,7 @@ export default async function RootLayout({
   const userBooks = await getBooksByUserId();
 
   return (
-    <html lang="pt-br">
+    <html lang="pt-BR">
       <body className={font.className}>
         <ToasterProvider />
         <SupabaseProvider>
