@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Books } from "@/types";
 import useOnPlay from "@/hooks/useOnPlay";
+import useAuthModal from "@/hooks/useAuthModal";
 
 interface PageContentProps {
   books: Books[];
@@ -9,6 +11,7 @@ interface PageContentProps {
 
 const PageContent: React.FC<PageContentProps> = ({ books }) => {
   const onPlay = useOnPlay(books);
+  const { onClose, isOpen } = useAuthModal();
 
   if (books.length === 0) {
     return (
@@ -17,6 +20,9 @@ const PageContent: React.FC<PageContentProps> = ({ books }) => {
       </div>
     );
   }
+  const onClick = (id: string) => {
+    alert(`ID do livro: ${id}`);
+  };
 
   return (
     <div
@@ -32,9 +38,18 @@ const PageContent: React.FC<PageContentProps> = ({ books }) => {
         mt-4
       "
     >
-      {books.map((item) => (
-        <div key={item.title}>{item.title}</div>
-      ))}
+      {books
+        .filter((item) => item.thumbnail)
+        .map((item) => (
+          <div key={item.id}>
+            <img
+              src={item.thumbnail}
+              alt={item.title}
+              className="w-150 h-220 hover:scale-105 transition-transform duration-300"
+              onClick={() => onClick(item.id)} // aqui é a mudança
+            />
+          </div>
+        ))}
     </div>
   );
 };
