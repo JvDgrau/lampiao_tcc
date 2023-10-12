@@ -59,7 +59,7 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
         <p className="font-medium text-white mb-1 truncate">{name}</p>
         <div className="bg-white h-[1px] w-3/4 self-stretch mx-3"></div>{" "}
         <span className="font-bold text-indigo-700 bg-white p-1 mt-1 rounded-md">
-          {10}
+          -
         </span>
       </button>
     </div>
