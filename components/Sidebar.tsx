@@ -5,7 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 
 import SidebarItem from "./SidebarItem";
 import Box from "./Box";
@@ -16,7 +16,7 @@ import usePlayer from "@/hooks/usePlayer";
 
 interface SidebarProps {
   children: React.ReactNode;
-  books: Books[];
+  books: Book[];
 }
 
 const Sidebar = ({ children, books }: SidebarProps) => {

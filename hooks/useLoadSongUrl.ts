@@ -1,8 +1,8 @@
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 
-const useLoadSongUrl = (books: Books) => {
+const useLoadSongUrl = (books: Book) => {
   const supabaseClient = useSupabaseClient();
 
   if (!books) {

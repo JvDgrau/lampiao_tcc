@@ -3,11 +3,11 @@
 import Image from "next/image";
 
 import useLoadImage from "@/hooks/useLoadImage";
-import { Books } from "@/types";
+import { Book } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
 
 interface MediaItemProps {
-  data: Books;
+  data: Book;
   onClick?: (id: string) => void;
 }
 

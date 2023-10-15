@@ -1,4 +1,3 @@
-import getBooks from "@/actions/getBooks";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 
@@ -8,7 +7,7 @@ import getBooksById from "@/actions/getBooksById";
 export const revalidate = 0;
 
 export default async function Home() {
-  const books = await getBooksById();
+  const books = await getBooksById('romance', 0, 40);
 
   return (
     <div

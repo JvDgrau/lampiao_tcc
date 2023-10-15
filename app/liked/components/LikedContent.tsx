@@ -3,14 +3,14 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 import { useUser } from "@/hooks/useUser";
 import MediaItem from "@/components/MediaItem";
 import LikeButton from "@/components/LikeButton";
 import useOnPlay from "@/hooks/useOnPlay";
 
 interface LikedContentProps {
-  books: Books[];
+  books: Book[];
 }
 
 const LikedContent: React.FC<LikedContentProps> = ({ books }) => {
