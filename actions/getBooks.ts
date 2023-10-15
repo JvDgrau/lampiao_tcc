@@ -1,9 +1,9 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 
-const getBooks = async (): Promise<Books[]> => {
+const getBooks = async (): Promise<Book[]> => {
   const supabase = createServerComponentClient({
     cookies: cookies,
   });

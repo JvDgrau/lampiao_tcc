@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 
-export interface Books {
+export interface Book {
   id: string;
   title: string;
   thumbnail?: string;

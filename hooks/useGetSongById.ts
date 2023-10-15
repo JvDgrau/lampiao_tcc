@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useSessionContext } from "@supabase/auth-helpers-react";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 
 const useSongById = (id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [song, setSong] = useState<Books | undefined>(undefined);
+  const [song, setSong] = useState<Book | undefined>(undefined);
   const { supabaseClient } = useSessionContext();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const useSongById = (id?: string) => {
         return toast.error(error.message);
       }
 
-      setSong(data as Books);
+      setSong(data as Book);
       setIsLoading(false);
     };
 

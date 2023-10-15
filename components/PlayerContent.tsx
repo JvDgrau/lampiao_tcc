@@ -6,7 +6,7 @@ import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 import usePlayer from "@/hooks/usePlayer";
 
 import LikeButton from "./LikeButton";
@@ -14,7 +14,7 @@ import MediaItem from "./MediaItem";
 import Slider from "./Slider";
 
 interface PlayerContentProps {
-  song: Books;
+  song: Book;
   songUrl: string;
 }
 

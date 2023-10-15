@@ -2,7 +2,7 @@
 
 import { MdMenuBook } from "react-icons/md";
 
-import { Books } from "@/types";
+import { Book } from "@/types";
 import useUploadModal from "@/hooks/useUploadModal";
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
@@ -12,7 +12,7 @@ import useOnPlay from "@/hooks/useOnPlay";
 import MediaItem from "./MediaItem";
 
 interface LibraryProps {
-  books: Books[];
+  books: Book[];
 }
 
 const Library: React.FC<LibraryProps> = ({ books }) => {

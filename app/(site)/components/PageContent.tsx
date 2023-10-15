@@ -31,7 +31,7 @@ const PageContent: FC<PageContentProps> = ({ books }) => {
   if (books.length === 0) {
     return (
       <div className="mt-4 text-neutral-400">
-        Cadastre-se e escolha seus livros preferidos.
+        Nenhum livro encontrado para o gênero escolhido.
       </div>
     );
   }
