@@ -7,7 +7,7 @@ import getBooksById from "@/actions/getBooksById";
 export const revalidate = 0;
 
 export default async function Home() {
-  const books = await getBooksById('romance', 0, 40);
+  const books = await getBooksById("romance", 0, 40);
 
   return (
     <div
@@ -51,7 +51,9 @@ export default async function Home() {
       </Header>
       <div className="mt-2 mb-7 px-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-white text-2xl font-semibold">Minha estante</h1>
+          <h1 className="text-white text-2xl font-semibold">
+            Encontre seus livros preferidos
+          </h1>
         </div>
         <PageContent books={books} />
       </div>
