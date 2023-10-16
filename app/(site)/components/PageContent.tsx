@@ -49,6 +49,7 @@ const PageContent: FC<PageContentProps> = ({ books }) => {
       <ModalBook isOpen={!!selectedBook} onClose={handleCloseModal}>
         {selectedBook && (
           <BookComponent
+            bookTitle={selectedBook.title}
             bookThumbnail={selectedBook.thumbnail}
             bookDescription={selectedBook.description}
             comments={selectedBook.comments}

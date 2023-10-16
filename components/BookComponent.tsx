@@ -6,12 +6,14 @@ interface Comment {
 }
 
 interface BookComponentProps {
+  bookTitle: string;
   bookThumbnail?: string;
   bookDescription: string;
   comments: Comment[];
 }
 
 const BookComponent: FC<BookComponentProps> = ({
+  bookTitle,
   bookThumbnail,
   bookDescription,
   comments,
@@ -20,9 +22,16 @@ const BookComponent: FC<BookComponentProps> = ({
     <>
       <div
         className="w-1/2 p-8 bg-gradient-to-b 
-      from-green-900 flex items-center justify-center"
+        to bg-gray-900 from-indigo-700  flex items-center justify-center"
       >
-        <img src={bookThumbnail} alt="Book Thumbnail" />
+        <div className="flex flex-col items-center justify-center h-full">
+          <img
+            src={bookThumbnail}
+            alt="Book Thumbnail"
+            className="transform scale-125 mb-12"
+          />
+          <p className="text-center">{bookTitle}</p>
+        </div>
       </div>
       <div className="w-1/2 p-8 flex flex-col justify-between">
         <div>
@@ -40,7 +49,7 @@ const BookComponent: FC<BookComponentProps> = ({
             ))} */}
           </div>
         </div>
-        <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded self-end">
+        <button className="bg-green-200 text-green-800 px-6 py-3 border-2 border-green-800 rounded-md self-center hover:opacity-75">
           Adicionar Livro
         </button>
       </div>
