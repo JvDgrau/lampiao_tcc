@@ -85,8 +85,8 @@ const Sidebar = ({ children, books }: SidebarProps) => {
             <Image
               width={200}
               height={50}
-              src="/images/menina-paginometro.png"
-              alt="Lampiao logo"
+              src="/images/girlReading.png"
+              alt="Menina sentada lendo um livro"
             />
           </div>
         </Box>
