@@ -1,8 +1,10 @@
+"use client";
+import { useState, useEffect } from "react";
 import getBooksByTitle from "@/actions/getBooksByTitle";
 import SearchInput from "@/components/SearchInput";
 import Header from "@/components/Header";
-
 import SearchContent from "./components/SearchContent";
+import { Book } from "@/types";
 
 export const revalidate = 0;
 
@@ -10,8 +12,19 @@ interface SearchProps {
   searchParams: { title: string };
 }
 
-const Search = async ({ searchParams }: SearchProps) => {
-  const books = await getBooksByTitle(searchParams.title);
+const Search = ({ searchParams }: SearchProps) => {
+  const [books, setBooks] = useState<Book[]>([]);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      if (searchParams.title) {
+        const results = await getBooksByTitle(searchParams.title);
+        setBooks(results);
+      }
+    };
+
+    fetchBooks();
+  }, [searchParams.title]);
 
   return (
     <div
