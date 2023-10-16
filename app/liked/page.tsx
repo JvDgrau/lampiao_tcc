@@ -3,8 +3,6 @@ import Image from "next/image";
 import getLikedBooks from "@/actions/getLikedBooks";
 import Header from "@/components/Header";
 
-import LikedContent from "./components/LikedContent";
-
 export const revalidate = 0;
 
 const Liked = async () => {
@@ -41,7 +39,9 @@ const Liked = async () => {
               />
             </div>
             <div className="flex flex-col gap-y-2 mt-4 md:mt-0">
-              <p className="hidden md:block font-semibold text-sm">Playlist</p>
+              <p className="hidden md:block font-semibold text-sm">
+                Bem vindo de volta @user
+              </p>
               <h1
                 className="
                   text-white 
@@ -51,7 +51,7 @@ const Liked = async () => {
                   font-bold
                 "
               >
-                Liked Songs
+                Minha Biblioteca
               </h1>
             </div>
           </div>

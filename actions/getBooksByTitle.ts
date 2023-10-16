@@ -1,31 +1,29 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies, headers } from "next/headers";
-
 import { Book } from "@/types";
 
-import getBooks from "./getBooks";
+const API_KEY = process.env.GOOGLE_BOOKS_API_KEY || "";
 
 const getBooksByTitle = async (title: string): Promise<Book[]> => {
-  const supabase = createServerComponentClient({
-    cookies: cookies,
-  });
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${API_KEY}`
+    );
+    const data = await response.json();
 
-  if (!title) {
-    const allSongs = await getBooks();
-    return allSongs;
+    if (data.totalItems === 0) {
+      return [];
+    }
+
+    const books: Book[] = data.items.map((book: any) => ({
+      id: book.id,
+      title: book.volumeInfo.title,
+      thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+    }));
+
+    return books;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    return [];
   }
-
-  const { data, error } = await supabase
-    .from("songs")
-    .select("*")
-    .ilike("title", `%${title}%`)
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.log(error.message);
-  }
-
-  return (data as any) || [];
 };
 
 export default getBooksByTitle;
