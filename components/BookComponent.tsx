@@ -49,7 +49,7 @@ const BookComponent: FC<BookComponentProps> = ({
             ))} */}
           </div>
         </div>
-        <button className="bg-green-200 text-green-800 px-6 py-3 border-2 border-green-800 rounded-md self-center hover:opacity-75">
+        <button className="bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75">
           Adicionar Livro
         </button>
       </div>

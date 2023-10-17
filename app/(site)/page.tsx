@@ -42,10 +42,10 @@ export default async function Home() {
               mt-4
             "
           >
-            <ListItem name="Lidos" image="/images/liked.png" href="liked" />
-            <ListItem name="Lendo" image="/images/liked.png" href="liked" />
-            <ListItem name="Quero ler" image="/images/liked.png" href="liked" />
-            <ListItem name="Críticas" image="/images/liked.png" href="liked" />
+            <ListItem name="Lidos" href="liked" />
+            <ListItem name="Lendo" href="liked" />
+            <ListItem name="Quero ler" href="liked" />
+            <ListItem name="Críticas" href="liked" />
           </div>
         </div>
       </Header>

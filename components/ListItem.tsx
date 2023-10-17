@@ -8,12 +8,11 @@ import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 
 interface ListItemProps {
-  image: string;
   name: string;
   href: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
+const ListItem: React.FC<ListItemProps> = ({ name, href }) => {
   const router = useRouter();
   const authModal = useAuthModal();
   const { user } = useUser();
