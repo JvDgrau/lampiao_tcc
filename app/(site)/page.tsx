@@ -1,13 +1,27 @@
+"use client";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 
 import PageContent from "./components/PageContent";
-import getBooksById from "@/actions/getBooksById";
+import getBooksByGenre from "@/actions/getBooksByGenre";
+import { useEffect, useState } from "react";
+import BookGenreDropdown from "@/components/BookGenreDropdown";
+import { Book } from "@/types";
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const books = await getBooksById("romance", 0, 40);
+  const [books, setBooks] = useState<Book[]>([]);
+  const [genre, setGenre] = useState("");
+
+  useEffect(() => {
+    async function fetchBooks() {
+      const bookResults = await getBooksByGenre(genre, 0, 40);
+      setBooks(bookResults);
+    }
+
+    fetchBooks();
+  }, [genre]);
 
   return (
     <div
@@ -54,6 +68,9 @@ export default async function Home() {
           <h1 className="text-white text-2xl font-semibold">
             Encontre seus livros preferidos
           </h1>
+        </div>
+        <div className="mt-2">
+          <BookGenreDropdown onGenreChange={setGenre} />
         </div>
         <PageContent books={books} />
       </div>

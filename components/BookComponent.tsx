@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 
 interface Comment {
-  name: string;
-  comment: string;
+  name?: string;
+  comment?: string;
 }
 
 interface BookComponentProps {
   bookTitle: string;
   bookThumbnail?: string;
-  bookDescription: string;
-  comments: Comment[];
+  bookDescription?: string;
+  comments?: Comment[];
 }
 
 const BookComponent: FC<BookComponentProps> = ({
@@ -28,7 +28,7 @@ const BookComponent: FC<BookComponentProps> = ({
           <img
             src={bookThumbnail}
             alt="Book Thumbnail"
-            className="transform scale-125 mb-12"
+            className="transform scale-125 mb-12 rounded-lg"
           />
           <p className="text-center">{bookTitle}</p>
         </div>
@@ -41,12 +41,12 @@ const BookComponent: FC<BookComponentProps> = ({
           </div>
           <div className="mb-4">
             <h2 className="text-xl font-bold mb-2">Comentários</h2>
-            {/* {comments.map((comment, index) => (
+            {comments?.map((comment, index) => (
               <div key={index} className="mb-2">
                 <p className="font-medium">{comment.name}</p>
                 <p>{comment.comment}</p>
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
         <button className="bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75">

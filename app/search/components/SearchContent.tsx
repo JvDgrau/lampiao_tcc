@@ -44,7 +44,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ books }) => {
             <img
               src={item.thumbnail}
               alt={item.title}
-              className="w-150 h-220 hover:scale-105 transition-transform duration-300"
+              className="w-150 h-220 hover:scale-105 transition-transform duration-300 rounded-lg"
             />
           </div>
         ))}

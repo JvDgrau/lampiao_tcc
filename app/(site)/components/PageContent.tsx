@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState, FC } from "react";
-import useOnPlay from "@/hooks/useOnPlay";
-import useAuthModal from "@/hooks/useAuthModal";
 import BookComponent from "@/components/BookComponent";
 import ModalBook from "@/components/ModalBooks";
 
@@ -10,8 +8,8 @@ interface Book {
   id: string;
   thumbnail?: string;
   title: string;
-  description: string;
-  comments: Comment[];
+  description?: string;
+  comments?: Comment[];
 }
 
 interface Comment {
@@ -24,8 +22,6 @@ interface PageContentProps {
 }
 
 const PageContent: FC<PageContentProps> = ({ books }) => {
-  const onPlay = useOnPlay(books);
-  const { onClose, isOpen } = useAuthModal();
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   if (books.length === 0) {
@@ -77,7 +73,7 @@ const PageContent: FC<PageContentProps> = ({ books }) => {
               <img
                 src={item.thumbnail}
                 alt={item.title}
-                className="w-150 h-220 hover:scale-105 transition-transform duration-300"
+                className="w-150 h-220 hover:scale-105 transition-transform duration-300 rounded-lg"
                 onClick={() => onClick(item)}
               />
             </div>
