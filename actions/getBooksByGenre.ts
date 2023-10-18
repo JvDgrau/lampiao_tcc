@@ -16,18 +16,29 @@ const getBooksByGenre = async (
     );
 
     if (!response.ok) {
-      throw new Error(`Erro intero: ${response.status}`);
+      throw new Error(`Erro interno: ${response.status}`);
     }
 
     const data = await response.json();
 
     if (data.totalItems === 0) return [];
 
-    return data.items.map((book: any) => ({
-      id: book.id,
-      title: book.volumeInfo.title,
-      thumbnail: book.volumeInfo.imageLinks?.thumbnail,
-    }));
+    const booksMap: { [title: string]: Book } = {};
+
+    data.items.forEach((book: any) => {
+      const title = book.volumeInfo.title;
+      if (title && !booksMap[title]) {
+        booksMap[title] = {
+          id: book.id,
+          title: title,
+          thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+        };
+      }
+    });
+
+    const uniqueBooks = Object.values(booksMap);
+
+    return uniqueBooks;
   } catch (error) {
     console.error("Erro ao buscar os livros pelo gênero:", error);
     return [];
