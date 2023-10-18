@@ -17,6 +17,7 @@ function BookGenreDropdown({ onGenreChange }: Props) {
     <select
       value={selectedGenre}
       onChange={(e) => setSelectedGenre(e.target.value)}
+      className="bg-gray-800 text-white p-1 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:from-indigo-800 focus:border-transparent"
     >
       {genres.map((genre) => (
         <option key={genre.value} value={genre.value}>

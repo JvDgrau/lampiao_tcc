@@ -1,7 +1,7 @@
 export const genres = [
   { value: "", label: "Escolha um gênero" },
-  { value: "acao_aventura", label: "Ação e Aventura" },
-  { value: "arte_fotografia", label: "Arte e Fotografia" },
+  { value: "acao", label: "Ação e Aventura" },
+  { value: "arte", label: "Arte e Fotografia" },
   { value: "biografia", label: "Biografia" },
   { value: "ciencia", label: "Ciência" },
   { value: "ciencia_politica", label: "Ciência Política" },
