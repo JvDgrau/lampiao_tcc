@@ -4,6 +4,7 @@ export interface Book {
   id: string;
   title: string;
   thumbnail?: string;
+  description: string;
 }
 
 export interface Product {

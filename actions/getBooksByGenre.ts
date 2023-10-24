@@ -32,6 +32,7 @@ const getBooksByGenre = async (
           id: book.id,
           title: title,
           thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+          description: book.volumeInfo.description || "Sinopse não disponível",
         };
       }
     });

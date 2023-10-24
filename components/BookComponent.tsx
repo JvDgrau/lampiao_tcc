@@ -36,8 +36,10 @@ const BookComponent: FC<BookComponentProps> = ({
       <div className="w-1/2 p-8 flex flex-col justify-between">
         <div>
           <div className="mb-4">
-            <h2 className="text-xl font-bold mb-2">Sinopse</h2>
-            <p>{bookDescription}</p>
+            <h2 className="text-xl font-bold text-black mb-2">Sinopse</h2>
+            <p className="text-sm font-bold text-[#302D2D] mb-2">
+              {bookDescription}
+            </p>
           </div>
           <div className="mb-4">
             <h2 className="text-xl font-bold mb-2">Comentários</h2>
