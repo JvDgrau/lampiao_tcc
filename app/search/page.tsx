@@ -26,6 +26,9 @@ const Search: React.FC<SearchProps> = ({ searchParams }) => {
           booksPerPage
         );
         setBooks(results);
+      } else {
+        setBooks([]);
+        setCurrentPage(1);
       }
     };
 
