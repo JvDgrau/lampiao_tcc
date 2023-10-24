@@ -54,7 +54,13 @@ const Search: React.FC<SearchProps> = ({ searchParams }) => {
       <SearchContent books={books} />
       {books.length > 0 && (
         <div className="mt-4 flex justify-between px-4 pb-4">
-          <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className={`your-existing-tailwind-classes ${
+              currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
+            }`}
+          >
             Anterior
           </button>
           {hasMoreBooks && <button onClick={handleNextPage}>Próximo</button>}

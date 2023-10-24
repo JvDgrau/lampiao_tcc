@@ -63,7 +63,13 @@ const Home: React.FC = () => {
         </div>
         <PageContent books={books} />
         <div className="mt-4 flex justify-between">
-          <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className={`your-existing-tailwind-classes ${
+              currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
+            }`}
+          >
             Anterior
           </button>
           <button onClick={handleNextPage}>Próximo</button>
