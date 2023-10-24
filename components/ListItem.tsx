@@ -50,7 +50,7 @@ const ListItem: React.FC<ListItemProps> = ({ name, href }) => {
         <div className="absolute top-0 left-0 w-full h-1/2 bg-indigo-700 flex items-center justify-center z-10">
           <p className="font-medium text-white">{name}</p>
         </div>
-        <span className="font-bold text-indigo-700 text-2xl mt-12 z-0">10</span>
+        <span className="font-bold text-indigo-700 text-2xl mt-14 z-0">-</span>
       </button>
     </div>
   );

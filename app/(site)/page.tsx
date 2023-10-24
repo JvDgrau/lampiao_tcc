@@ -66,9 +66,9 @@ const Home: React.FC = () => {
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className={`your-existing-tailwind-classes ${
+            className={
               currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
-            }`}
+            }
           >
             Anterior
           </button>

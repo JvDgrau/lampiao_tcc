@@ -57,9 +57,7 @@ const Search: React.FC<SearchProps> = ({ searchParams }) => {
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className={`your-existing-tailwind-classes ${
-              currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
-            }`}
+            className={currentPage === 1 ? "cursor-not-allowed opacity-50" : ""}
           >
             Anterior
           </button>
