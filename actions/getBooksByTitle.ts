@@ -21,6 +21,7 @@ const getBooksByTitle = async (
       id: book.id,
       title: book.volumeInfo.title,
       thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+      description: book.volumeInfo.description || "Sinopse não disponível",
     }));
 
     return books;

@@ -5,6 +5,12 @@ export interface Book {
   title: string;
   thumbnail?: string;
   description: string;
+  comments?: Comment[];
+}
+
+interface Comment {
+  name: string;
+  comment: string;
 }
 
 export interface Product {

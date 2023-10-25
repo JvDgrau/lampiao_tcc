@@ -3,9 +3,13 @@ import { Book } from "@/types";
 
 interface SearchContentProps {
   books: Book[];
+  onBookClick: (book: Book) => void;
 }
 
-const SearchContent: React.FC<SearchContentProps> = ({ books }) => {
+const SearchContent: React.FC<SearchContentProps> = ({
+  books,
+  onBookClick,
+}) => {
   if (books.length === 0) {
     return (
       <div
@@ -40,7 +44,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ books }) => {
       {books
         .filter((item) => item.thumbnail)
         .map((item) => (
-          <div key={item.id}>
+          <div key={item.id} onClick={() => onBookClick(item)}>
             <img
               src={item.thumbnail}
               alt={item.title}
