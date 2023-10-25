@@ -18,7 +18,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
           flex-col 
           gap-y-2 
           w-full 
-          px-6 
+          pr-12
           text-neutral-400
         "
       >
