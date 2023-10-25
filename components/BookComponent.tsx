@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 interface Comment {
   name?: string;
@@ -18,6 +18,15 @@ const BookComponent: FC<BookComponentProps> = ({
   bookDescription,
   comments,
 }) => {
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const truncatedDescription = (description: string | undefined) => {
+    if (!description) return "";
+    return description.length > 150
+      ? description.substr(0, 147) + "..."
+      : description;
+  };
+
   return (
     <>
       <div
@@ -38,11 +47,21 @@ const BookComponent: FC<BookComponentProps> = ({
           <div className="mb-4">
             <h2 className="text-xl font-bold text-black mb-2">Sinopse</h2>
             <p className="text-sm font-bold text-[#302D2D] mb-2">
-              {bookDescription}
+              {showFullDescription
+                ? bookDescription
+                : truncatedDescription(bookDescription)}
             </p>
+            {bookDescription && bookDescription.length > 150 && (
+              <button
+                onClick={() => setShowFullDescription(!showFullDescription)}
+                className="text-indigo-800 hover:underline mt-2"
+              >
+                {showFullDescription ? "Ver menos" : "Ler mais"}
+              </button>
+            )}
           </div>
-          <div className="mb-4">
-            <h2 className="text-xl font-bold mb-2">Comentários</h2>
+          <div className="mb-4 bg-[#F4EEE7]">
+            <h2 className="text-xl text-black font-bold mb-2">Comentários</h2>
             {comments?.map((comment, index) => (
               <div key={index} className="mb-2">
                 <p className="font-medium">{comment.name}</p>
