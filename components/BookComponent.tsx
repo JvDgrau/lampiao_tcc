@@ -20,19 +20,16 @@ const BookComponent: FC<BookComponentProps> = ({
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  const truncatedDescription = (description: string | undefined) => {
-    if (!description) return "";
-    return description.length > 150
-      ? description.substr(0, 147) + "..."
-      : description;
+  const truncatedDescription = (desc: string | undefined) => {
+    if (desc && desc.length > 150) {
+      return `${desc.slice(0, 150)}...`;
+    }
+    return desc;
   };
 
   return (
     <>
-      <div
-        className="w-1/2 p-8 bg-gradient-to-b 
-        to bg-gray-900 from-indigo-700  flex items-center justify-center"
-      >
+      <div className="w-1/2 p-8 bg-gradient-to-b to bg-gray-900 from-indigo-700 flex items-center justify-center">
         <div className="flex flex-col items-center justify-center h-full">
           <img
             src={bookThumbnail}
@@ -42,8 +39,8 @@ const BookComponent: FC<BookComponentProps> = ({
           <p className="text-center">{bookTitle}</p>
         </div>
       </div>
-      <div className="w-1/2 p-8 flex flex-col justify-between">
-        <div>
+      <div className="w-1/2 p-8 flex flex-col h-full">
+        <div className="flex flex-col flex-grow overflow-y-auto">
           <div className="mb-4">
             <h2 className="text-xl font-bold text-black mb-2">Sinopse</h2>
             <p className="text-sm font-bold text-[#302D2D] mb-2">
@@ -54,13 +51,13 @@ const BookComponent: FC<BookComponentProps> = ({
             {bookDescription && bookDescription.length > 150 && (
               <button
                 onClick={() => setShowFullDescription(!showFullDescription)}
-                className="text-indigo-800 hover:underline mt-2"
+                className="text-indigo-500 hover:underline mt-2"
               >
                 {showFullDescription ? "Ver menos" : "Ler mais"}
               </button>
             )}
           </div>
-          <div className="mb-4 bg-[#F4EEE7]">
+          <div className="bg-[#F4EEE7] flex-grow overflow-y-auto">
             <h2 className="text-xl text-black font-bold mb-2">Comentários</h2>
             {comments?.map((comment, index) => (
               <div key={index} className="mb-2">
@@ -70,7 +67,7 @@ const BookComponent: FC<BookComponentProps> = ({
             ))}
           </div>
         </div>
-        <button className="bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75">
+        <button className="bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75 mt-4">
           Adicionar Livro
         </button>
       </div>
