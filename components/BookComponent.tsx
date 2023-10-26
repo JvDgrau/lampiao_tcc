@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import RatingComponent from "./RatingComponent";
 
 interface Comment {
   name?: string;
@@ -19,6 +20,7 @@ const BookComponent: FC<BookComponentProps> = ({
   comments,
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const averageRating = 5;
 
   const truncatedDescription = (desc: string | undefined) => {
     if (desc && desc.length > 150) {
@@ -30,13 +32,20 @@ const BookComponent: FC<BookComponentProps> = ({
   return (
     <>
       <div className="w-1/2 p-8 bg-gradient-to-b to bg-gray-900 from-indigo-700 flex items-center justify-center">
-        <div className="flex flex-col items-center justify-center h-full">
+        <div className="flex flex-col items-center justify-center h-full mt-12">
           <img
             src={bookThumbnail}
             alt="Book Thumbnail"
             className="transform scale-125 mb-12 rounded-lg"
           />
           <p className="text-center">{bookTitle}</p>
+          <div className="mb-6 flex items-center space-x-2">
+            <div className="bg-white px-4 py-1 rounded-md flex items-center space-x-2 mt-6">
+              <span className="text-gray-700 font-semibold">MÉDIA GERAL |</span>
+              <span className="text-black font-bold">{averageRating}</span>
+            </div>
+          </div>
+          <RatingComponent />
         </div>
       </div>
       <div className="w-1/2 p-8 flex flex-col h-full">
