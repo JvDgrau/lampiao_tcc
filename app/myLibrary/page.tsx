@@ -1,13 +1,12 @@
+"use client";
 import Image from "next/image";
-
-import getLikedBooks from "@/actions/getLikedBooks";
 import Header from "@/components/Header";
+import { useUser } from "@/hooks/useUser";
 
 export const revalidate = 0;
 
-const Liked = async () => {
-  const songs = await getLikedBooks();
-
+const MyLibrary = async () => {
+  const { user } = useUser();
   return (
     <div
       className="
@@ -40,7 +39,7 @@ const Liked = async () => {
             </div>
             <div className="flex flex-col gap-y-2 mt-4 md:mt-0">
               <p className="hidden md:block font-semibold text-sm">
-                Bem vindo de volta @user
+                Bem vindo de volta {user?.email}
               </p>
               <h1
                 className="
@@ -61,4 +60,4 @@ const Liked = async () => {
   );
 };
 
-export default Liked;
+export default MyLibrary;

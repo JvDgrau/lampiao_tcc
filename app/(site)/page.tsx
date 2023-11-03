@@ -45,10 +45,10 @@ const Home: React.FC = () => {
             Bem vindo ao Lampião
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4">
-            <ListItem name="Lidos" href="liked" />
-            <ListItem name="Lendo" href="liked" />
-            <ListItem name="Quero ler" href="liked" />
-            <ListItem name="Críticas" href="liked" />
+            <ListItem name="Lidos" href="myLibrary" />
+            <ListItem name="Lendo" href="myLibrary" />
+            <ListItem name="Quero ler" href="myLibrary" />
+            <ListItem name="Críticas" href="myLibrary" />
           </div>
         </div>
       </Header>
@@ -66,9 +66,7 @@ const Home: React.FC = () => {
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className={
-              currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
-            }
+            className={currentPage === 1 ? "cursor-not-allowed opacity-50" : ""}
           >
             Anterior
           </button>
