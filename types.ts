@@ -6,6 +6,12 @@ export interface Book {
   thumbnail?: string;
   description: string;
   comments?: Comment[];
+  user_book_id: number;
+  user_id: string;
+  book_id: string;
+  status: string;
+  personal_rating?: number;
+  deleted_at?: string;
 }
 
 interface Comment {

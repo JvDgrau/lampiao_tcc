@@ -3,188 +3,151 @@ export type Json =
   | number
   | boolean
   | null
-  | { [key: string]: Json }
+  | { [key: string]: Json | undefined }
   | Json[]
 
 export interface Database {
   public: {
     Tables: {
-      customers: {
+      book_statuses: {
         Row: {
-          id: string
-          stripe_customer_id: string | null
+          status_id: number
+          status_name: string
         }
         Insert: {
-          id: string
-          stripe_customer_id?: string | null
+          status_id?: number
+          status_name: string
         }
         Update: {
-          id?: string
-          stripe_customer_id?: string | null
+          status_id?: number
+          status_name?: string
         }
+        Relationships: []
       }
-      liked_songs: {
+      books: {
         Row: {
-          song_id: number
-          user_id: string
+          api_id: string
+          average_rating: number | null
+          book_id: string
+          deleted_at: string | null
         }
         Insert: {
-          song_id: number
-          user_id: string
+          api_id: string
+          average_rating?: number | null
+          book_id?: string
+          deleted_at?: string | null
         }
         Update: {
-          song_id?: number
-          user_id?: string
+          api_id?: string
+          average_rating?: number | null
+          book_id?: string
+          deleted_at?: string | null
         }
+        Relationships: []
       }
-      prices: {
+      comments: {
         Row: {
-          active: boolean | null
-          currency: string | null
-          description: string | null
-          id: string
-          interval: Database["public"]["Enums"]["pricing_plan_interval"] | null
-          interval_count: number | null
-          metadata: Json | null
-          product_id: string | null
-          trial_period_days: number | null
-          type: Database["public"]["Enums"]["pricing_type"] | null
-          unit_amount: number | null
-        }
-        Insert: {
-          active?: boolean | null
-          currency?: string | null
-          description?: string | null
-          id: string
-          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null
-          interval_count?: number | null
-          metadata?: Json | null
-          product_id?: string | null
-          trial_period_days?: number | null
-          type?: Database["public"]["Enums"]["pricing_type"] | null
-          unit_amount?: number | null
-        }
-        Update: {
-          active?: boolean | null
-          currency?: string | null
-          description?: string | null
-          id?: string
-          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null
-          interval_count?: number | null
-          metadata?: Json | null
-          product_id?: string | null
-          trial_period_days?: number | null
-          type?: Database["public"]["Enums"]["pricing_type"] | null
-          unit_amount?: number | null
-        }
-      }
-      products: {
-        Row: {
-          active: boolean | null
-          description: string | null
-          id: string
-          image: string | null
-          metadata: Json | null
-          name: string | null
-        }
-        Insert: {
-          active?: boolean | null
-          description?: string | null
-          id: string
-          image?: string | null
-          metadata?: Json | null
-          name?: string | null
-        }
-        Update: {
-          active?: boolean | null
-          description?: string | null
-          id?: string
-          image?: string | null
-          metadata?: Json | null
-          name?: string | null
-        }
-      }
-      songs: {
-        Row: {
-          author: string | null
+          comment_id: number
+          comment_text: string
           created_at: string | null
-          id: number
-          image_path: string | null
-          song_path: string | null
-          title: string | null
+          deleted_at: string | null
+          user_book_id: number | null
+        }
+        Insert: {
+          comment_id?: number
+          comment_text: string
+          created_at?: string | null
+          deleted_at?: string | null
+          user_book_id?: number | null
+        }
+        Update: {
+          comment_id?: number
+          comment_text?: string
+          created_at?: string | null
+          deleted_at?: string | null
+          user_book_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_user_book_id_fkey"
+            columns: ["user_book_id"]
+            isOneToOne: false
+            referencedRelation: "user_books"
+            referencedColumns: ["user_book_id"]
+          }
+        ]
+      }
+      user_book_statuses: {
+        Row: {
+          status_id: number | null
+          user_book_id: number | null
+        }
+        Insert: {
+          status_id?: number | null
+          user_book_id?: number | null
+        }
+        Update: {
+          status_id?: number | null
+          user_book_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_book_statuses_status_id_fkey"
+            columns: ["status_id"]
+            isOneToOne: false
+            referencedRelation: "book_statuses"
+            referencedColumns: ["status_id"]
+          },
+          {
+            foreignKeyName: "user_book_statuses_user_book_id_fkey"
+            columns: ["user_book_id"]
+            isOneToOne: false
+            referencedRelation: "user_books"
+            referencedColumns: ["user_book_id"]
+          }
+        ]
+      }
+      user_books: {
+        Row: {
+          book_id: string | null
+          deleted_at: string | null
+          personal_rating: number | null
+          status: string | null
+          user_book_id: number
           user_id: string | null
         }
         Insert: {
-          author?: string | null
-          created_at?: string | null
-          id?: number
-          image_path?: string | null
-          song_path?: string | null
-          title?: string | null
+          book_id?: string | null
+          deleted_at?: string | null
+          personal_rating?: number | null
+          status?: string | null
+          user_book_id?: number
           user_id?: string | null
         }
         Update: {
-          author?: string | null
-          created_at?: string | null
-          id?: number
-          image_path?: string | null
-          song_path?: string | null
-          title?: string | null
+          book_id?: string | null
+          deleted_at?: string | null
+          personal_rating?: number | null
+          status?: string | null
+          user_book_id?: number
           user_id?: string | null
         }
-      }
-      subscriptions: {
-        Row: {
-          cancel_at: string | null
-          cancel_at_period_end: boolean | null
-          canceled_at: string | null
-          created: string
-          current_period_end: string
-          current_period_start: string
-          ended_at: string | null
-          id: string
-          metadata: Json | null
-          price_id: string | null
-          quantity: number | null
-          status: Database["public"]["Enums"]["subscription_status"] | null
-          trial_end: string | null
-          trial_start: string | null
-          user_id: string
-        }
-        Insert: {
-          cancel_at?: string | null
-          cancel_at_period_end?: boolean | null
-          canceled_at?: string | null
-          created?: string
-          current_period_end?: string
-          current_period_start?: string
-          ended_at?: string | null
-          id: string
-          metadata?: Json | null
-          price_id?: string | null
-          quantity?: number | null
-          status?: Database["public"]["Enums"]["subscription_status"] | null
-          trial_end?: string | null
-          trial_start?: string | null
-          user_id: string
-        }
-        Update: {
-          cancel_at?: string | null
-          cancel_at_period_end?: boolean | null
-          canceled_at?: string | null
-          created?: string
-          current_period_end?: string
-          current_period_start?: string
-          ended_at?: string | null
-          id?: string
-          metadata?: Json | null
-          price_id?: string | null
-          quantity?: number | null
-          status?: Database["public"]["Enums"]["subscription_status"] | null
-          trial_end?: string | null
-          trial_start?: string | null
-          user_id?: string
-        }
+        Relationships: [
+          {
+            foreignKeyName: "user_books_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["book_id"]
+          },
+          {
+            foreignKeyName: "user_books_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       users: {
         Row: {
@@ -208,6 +171,15 @@ export interface Database {
           id?: string
           payment_method?: Json | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
