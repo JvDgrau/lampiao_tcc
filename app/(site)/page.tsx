@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
-import PageContent from "./components/PageContent";
+import PageContent from "./Home/PageContent";
 import getBooksByGenre from "@/actions/getBooksByGenre";
 import BookGenreDropdown from "@/components/BookGenreDropdown";
 import { Book } from "@/types";
