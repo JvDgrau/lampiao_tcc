@@ -33,6 +33,12 @@ const getBooksByGenre = async (
           title: title,
           thumbnail: book.volumeInfo.imageLinks?.thumbnail,
           description: book.volumeInfo.description || "Sinopse não disponível",
+          user_book_id: -1,
+          user_id: "",
+          book_id: book.id,
+          status: "",
+          personal_rating: -1,
+          deleted_at: "",
         };
       }
     });

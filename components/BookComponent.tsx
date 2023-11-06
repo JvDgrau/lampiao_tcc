@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import RatingComponent from "./RatingComponent";
+import { useUser } from "@/hooks/useUser";
 
 interface Comment {
   name?: string;
@@ -21,6 +22,7 @@ const BookComponent: FC<BookComponentProps> = ({
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const averageRating = 5;
+  const { user } = useUser();
 
   const truncatedDescription = (desc: string | undefined) => {
     if (desc && desc.length > 150) {
@@ -76,7 +78,12 @@ const BookComponent: FC<BookComponentProps> = ({
             ))}
           </div>
         </div>
-        <button className="bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75 mt-4">
+        <button
+          disabled={!user?.id}
+          className={`bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75 mt-4 ${
+            !user?.id ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-300"
+          }`}
+        >
           Adicionar Livro
         </button>
       </div>
