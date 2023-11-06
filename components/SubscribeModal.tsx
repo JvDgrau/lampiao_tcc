@@ -66,7 +66,9 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
   };
 
   let content = (
-    <div className="text-center">Você ainda não adicionou nenhum livro.</div>
+    <div className="text-center">
+      Para adicionar um livro, você precisa se cadastrar.
+    </div>
   );
 
   if (products.length) {
@@ -98,7 +100,7 @@ const SubscribeModal: React.FC<SubscribeModalProps> = ({ products }) => {
 
   return (
     <Modal
-      title="Sua estante"
+      title="Sua Biblioteca"
       description="Compartilhe seus livros e fanfics favoritas com seus amigos"
       isOpen={subscribeModal.isOpen}
       onChange={onChange}

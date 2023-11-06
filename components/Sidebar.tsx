@@ -4,9 +4,6 @@ import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
-
-import { Book } from "@/types";
-
 import SidebarItem from "./SidebarItem";
 import Box from "./Box";
 import Library from "./Library";
@@ -16,10 +13,9 @@ import usePlayer from "@/hooks/usePlayer";
 
 interface SidebarProps {
   children: React.ReactNode;
-  books: Book[];
 }
 
-const Sidebar = ({ children, books }: SidebarProps) => {
+const Sidebar = ({ children }: SidebarProps) => {
   const pathname = usePathname();
   const player = usePlayer();
 
@@ -80,7 +76,7 @@ const Sidebar = ({ children, books }: SidebarProps) => {
           </div>
         </Box>
         <Box className="h-full flex flex-col justify-between">
-          <Library books={books} />
+          <Library />
           <div className="flex justify-center items-center mb-4">
             <Image
               width={200}

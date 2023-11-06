@@ -2,11 +2,34 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import { useUser } from "@/hooks/useUser";
+import { useEffect, useState } from "react";
+import { useSessionContext } from "@supabase/auth-helpers-react";
+import { Book } from "@/types";
 
 export const revalidate = 0;
 
 const MyLibrary = async () => {
   const { user } = useUser();
+  const { supabaseClient } = useSessionContext();
+  const [books, setBooks] = useState<Book[]>([]);
+
+  useEffect(() => {
+    if (!user?.id) {
+      return;
+    }
+    const fetchData = async () => {
+      const { data, error } = await supabaseClient
+        .from("user_books")
+        .select("*")
+        .eq("user_id", user.id);
+
+      if (!error && data) {
+        setBooks(data as unknown as Book[]);
+      }
+    };
+
+    fetchData();
+  }, [supabaseClient, user?.id]);
   return (
     <div
       className="
@@ -52,6 +75,11 @@ const MyLibrary = async () => {
               >
                 Minha Biblioteca
               </h1>
+              {books.map((book) => (
+                <div key={book.user_book_id}>
+                  <h3>{book.book_id}</h3>
+                </div>
+              ))}
             </div>
           </div>
         </div>
