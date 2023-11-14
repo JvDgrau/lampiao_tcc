@@ -137,11 +137,8 @@ const MyLibrary = async () => {
               &times;{" "}
             </button>
             <img
-              src={
-                bookThumbnails[book.user_book_id] ||
-                "/path/to/your/placeholder/image.png"
-              }
-              alt={`Thumbnail of book with ID ${book.book_id}`}
+              src={bookThumbnails[book.user_book_id]}
+              alt={book.title}
               className="w-150 h-220 hover:scale-105 transition-transform duration-300 rounded-lg"
             />
           </div>
