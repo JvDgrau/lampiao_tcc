@@ -53,6 +53,23 @@ const MyLibrary = async () => {
     fetchThumbnails();
   }, [books]);
 
+  const removeBook = async (userBookId: number) => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabaseClient
+        .from("user_books")
+        .delete()
+        .match({ user_id: user.id, user_book_id: userBookId });
+
+      if (error) throw error;
+
+      setBooks(books.filter((book) => book.user_book_id !== userBookId));
+    } catch (err) {
+      console.error("Erro ao remover livro:", err);
+    }
+  };
+
   return (
     <div
       className="
@@ -102,22 +119,23 @@ const MyLibrary = async () => {
           </div>
         </div>
       </Header>
-      <div
-        className="
-          grid 
-          grid-cols-2 
-          sm:grid-cols-3 
-          md:grid-cols-3 
-          lg:grid-cols-4 
-          xl:grid-cols-5 
-          2xl:grid-cols-8 
-          gap-4 
-          mt-4
-          ml-6
-        "
-      >
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8 gap-4 mt-4 ml-6">
         {books.map((book) => (
-          <div key={book.user_book_id}>
+          <div key={book.user_book_id} className="relative group">
+            <button
+              className="
+                absolute top-0 start-28 z-10  
+                bg-red-500 text-white 
+                w-5 h-5 
+                rounded-full 
+                opacity-0 group-hover:opacity-100
+                text-xs
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700
+              "
+              onClick={() => removeBook(book.user_book_id)}
+            >
+              &times;{" "}
+            </button>
             <img
               src={
                 bookThumbnails[book.user_book_id] ||
