@@ -84,6 +84,7 @@ const Search: React.FC<SearchProps> = ({ searchParams }) => {
         <ModalBook isOpen={!!selectedBook} onClose={handleCloseModal}>
           {selectedBook && (
             <BookComponent
+              bookId={selectedBook.id}
               bookTitle={selectedBook.title}
               bookThumbnail={selectedBook.thumbnail}
               bookDescription={selectedBook.description}
