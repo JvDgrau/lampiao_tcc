@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import RatingComponent from "./RatingComponent";
 import { useUser } from "@/hooks/useUser";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 interface Comment {
   name?: string;
@@ -8,6 +9,7 @@ interface Comment {
 }
 
 interface BookComponentProps {
+  bookId: any;
   bookTitle: string;
   bookThumbnail?: string;
   bookDescription?: string;
@@ -15,6 +17,7 @@ interface BookComponentProps {
 }
 
 const BookComponent: FC<BookComponentProps> = ({
+  bookId,
   bookTitle,
   bookThumbnail,
   bookDescription,
@@ -22,6 +25,7 @@ const BookComponent: FC<BookComponentProps> = ({
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const averageRating = 5;
+  const { supabaseClient } = useSessionContext();
   const { user } = useUser();
 
   const truncatedDescription = (desc: string | undefined) => {
@@ -29,6 +33,28 @@ const BookComponent: FC<BookComponentProps> = ({
       return `${desc.slice(0, 150)}...`;
     }
     return desc;
+  };
+
+  const addBookToUser = async () => {
+    if (!user?.id) return;
+
+    try {
+      const { data, error } = await supabaseClient.from("user_books").insert([
+        {
+          user_id: user.id,
+          book_id: bookId,
+          status: "Reading",
+          personal_rating: null,
+        },
+      ]);
+
+      if (error) throw error;
+
+      alert("Livro adicionado com sucesso!");
+    } catch (err) {
+      console.error("Erro ao adicionar livro:", err);
+      alert("Erro ao adicionar o livro. Por favor, tente novamente.");
+    }
   };
 
   return (
@@ -80,6 +106,7 @@ const BookComponent: FC<BookComponentProps> = ({
         </div>
         <button
           disabled={!user?.id}
+          onClick={addBookToUser}
           className={`bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75 mt-4 ${
             !user?.id ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-300"
           }`}
