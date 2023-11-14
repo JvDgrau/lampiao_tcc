@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import RatingComponent from "./RatingComponent";
 import { useUser } from "@/hooks/useUser";
 import { useSessionContext } from "@supabase/auth-helpers-react";
@@ -24,15 +24,31 @@ const BookComponent: FC<BookComponentProps> = ({
   comments,
 }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [isBookAdded, setIsBookAdded] = useState(false);
   const averageRating = 5;
   const { supabaseClient } = useSessionContext();
   const { user } = useUser();
 
-  const truncatedDescription = (desc: string | undefined) => {
-    if (desc && desc.length > 150) {
-      return `${desc.slice(0, 150)}...`;
+  useEffect(() => {
+    checkIfBookAdded();
+  }, [user, bookId]);
+
+  const checkIfBookAdded = async () => {
+    if (!user?.id) return;
+
+    const { data, error } = await supabaseClient
+      .from("user_books")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("book_id", bookId)
+      .single();
+
+    if (error) {
+      console.error("Erro ao verificar livro:", error);
+      return;
     }
-    return desc;
+
+    setIsBookAdded(!!data);
   };
 
   const addBookToUser = async () => {
@@ -55,6 +71,39 @@ const BookComponent: FC<BookComponentProps> = ({
       console.error("Erro ao adicionar livro:", err);
       alert("Erro ao adicionar o livro. Por favor, tente novamente.");
     }
+  };
+
+  const removeBookFromUser = async () => {
+    if (!user) {
+      console.error("Usuário não encontrado");
+      return;
+    }
+    const { error } = await supabaseClient
+      .from("user_books")
+      .delete()
+      .match({ user_id: user.id, book_id: bookId });
+
+    if (error) throw error;
+
+    setIsBookAdded(false);
+    alert("Livro removido com sucesso!");
+  };
+
+  const handleButtonClick = () => {
+    if (!user?.id) return;
+
+    if (isBookAdded) {
+      removeBookFromUser();
+    } else {
+      addBookToUser();
+    }
+  };
+
+  const truncatedDescription = (desc: string | undefined) => {
+    if (desc && desc.length > 150) {
+      return `${desc.slice(0, 150)}...`;
+    }
+    return desc;
   };
 
   return (
@@ -106,12 +155,14 @@ const BookComponent: FC<BookComponentProps> = ({
         </div>
         <button
           disabled={!user?.id}
-          onClick={addBookToUser}
-          className={`bg-indigo-200 text-indigo-800 px-8 py-1 border-2 border-indigo-800 rounded-md self-center hover:opacity-75 mt-4 ${
-            !user?.id ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-300"
+          onClick={handleButtonClick}
+          className={`px-8 py-1 border-2 rounded-md self-center hover:opacity-75 mt-4 ${
+            isBookAdded
+              ? "bg-red-200 text-red-800 border-red-800 hover:bg-red-300"
+              : "bg-indigo-200 text-indigo-800 border-indigo-800 hover:bg-indigo-300"
           }`}
         >
-          Adicionar Livro
+          {isBookAdded ? "Remover Livro" : "Adicionar Livro"}
         </button>
       </div>
     </>
