@@ -44,7 +44,7 @@ const Home: React.FC = () => {
           <h1 className="text-white text-3xl font-semibold">
             Bem vindo ao Lampião
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4">
             <ListItem name="Lidos" href="myLibrary" />
             <ListItem name="Lendo" href="myLibrary" />
             <ListItem name="Quero ler" href="myLibrary" />
