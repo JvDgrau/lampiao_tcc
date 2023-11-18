@@ -11,6 +11,8 @@ import { useUser } from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
 
 import Button from "./Button";
+import Hamburger from "hamburger-react";
+import { useState } from "react";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -21,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const player = usePlayer();
   const router = useRouter();
   const authModal = useAuthModal();
+  const [isOpen, setOpen] = useState(false);
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -33,6 +36,10 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
     if (error) {
       toast.error(error.message);
     }
+  };
+
+  const handleMenuClick = () => {
+    setOpen(!isOpen);
   };
 
   return (
@@ -49,6 +56,46 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
       )}
     >
       <div className="w-full mb-4 flex items-center justify-end z-100">
+        <div className="md:hidden flex-grow">
+          <Hamburger
+            size={20}
+            direction="right"
+            color="#ffff"
+            toggled={isOpen}
+            toggle={handleMenuClick}
+          />
+          {isOpen && (
+            <div className="absolute top-16 left-8 p-4 px-6 bg-white shadow z-10">
+              <div className="font-semibold text-indigo-700">Lampião</div>
+              <hr />
+              <div className="mt-4 text-primary-300">
+                <ul>
+                  <li>
+                    <a href={"/"} className="hover:underline text-gray-800">
+                      Página Inicial
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"/search"}
+                      className="hover:underline text-gray-800"
+                    >
+                      Pesquisar
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"/myLibrary"}
+                      className="hover:underline text-gray-800"
+                    >
+                      Sua Biblioteca
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
         <div className="flex justify-between items-center gap-x-4">
           {user ? (
             <div className="flex gap-x-4 items-center">
