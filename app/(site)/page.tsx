@@ -6,10 +6,12 @@ import PageContent from "./Home/PageContent";
 import getBooksByGenre from "@/actions/getBooksByGenre";
 import BookGenreDropdown from "@/components/BookGenreDropdown";
 import { Book } from "@/types";
+import FanficsGenreDropdown from "@/components/FanficsGenreDropdown";
 
 const Home: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [genre, setGenre] = useState<string>("");
+  const [fanficGenre, setFanficGenre] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const booksPerPage: number = 40;
 
@@ -54,11 +56,33 @@ const Home: React.FC = () => {
       </Header>
       <div className="mt-2 mb-7 px-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-white text-2xl font-semibold">
+          <h1 className="text-white text-2xl font-semibold border-b border-indigo-300">
+            Fanfics preferidas pelos usuários
+          </h1>
+        </div>
+        <div className="mt-4">
+          <FanficsGenreDropdown onGenreChange={setFanficGenre} />
+        </div>
+        {/* <PageContent books={books} />
+        <div className="mt-4 flex justify-between">
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className={currentPage === 1 ? "cursor-not-allowed opacity-50" : ""}
+          >
+            Anterior
+          </button>
+          <button onClick={handleNextPage}>Próximo</button>
+        </div> */}
+      </div>
+      {/* {Sessão de livros} */}
+      <div className="mt-2 mb-7 px-6">
+        <div className="flex justify-between items-center">
+          <h1 className="text-white text-2xl font-semibold border-b border-indigo-300">
             Encontre seus livros preferidos
           </h1>
         </div>
-        <div className="mt-2">
+        <div className="mt-4">
           <BookGenreDropdown onGenreChange={setGenre} />
         </div>
         <PageContent books={books} />

@@ -10,6 +10,7 @@ import Library from "./Library";
 import { useMemo } from "react";
 import Image from "next/image";
 import usePlayer from "@/hooks/usePlayer";
+import LiteraryWorkshopSidebar from "./literaryWorkshopSidebar";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -76,7 +77,10 @@ const Sidebar = ({ children }: SidebarProps) => {
           </div>
         </Box>
         <Box className="h-full flex flex-col justify-between">
-          <Library />
+          <div className="flex flex-col items-start">
+            <Library />
+            <LiteraryWorkshopSidebar />
+          </div>
           <div className="flex justify-center items-center mb-4">
             <Image
               width={200}
