@@ -110,7 +110,7 @@ const BookComponent: FC<BookComponentProps> = ({
     <>
       <div className="flex flex-wrap">
         <div className="w-full md:w-1/2 p-4 bg-gradient-to-b to bg-gray-900 from-indigo-700 flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center h-full mt-4 md:mt-12">
+          <div className="flex flex-col items-center justify-center h-full mt-12 md:mt-12">
             <img
               src={bookThumbnail}
               alt="Book Thumbnail"
@@ -128,7 +128,7 @@ const BookComponent: FC<BookComponentProps> = ({
             <RatingComponent />
           </div>
         </div>
-        <div className="w-full md:w-1/2 p-4 flex flex-col max-h-64 overflow-y-auto">
+        <div className="w-full md:w-1/2 p-16 flex flex-col">
           <div className="flex flex-col flex-grow overflow-y-auto">
             <div className="mb-4">
               <h2 className="text-lg md:text-xl font-bold text-black mb-2">
